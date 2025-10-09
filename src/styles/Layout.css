@@ -1,0 +1,51 @@
+/* Layout.css */
+
+.layout {
+  min-height: 100vh;
+  background-color: #f3f4f6;
+}
+
+.layout-main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.app-header {
+  margin-bottom: 1.5rem;
+}
+
+.app-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.app-subtitle {
+  color: #4b5563;
+  font-size: 1rem;
+}
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+  .layout-main {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .layout-main {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .app-title {
+    font-size: 1.5rem;
+  }
+  
+  .app-subtitle {
+    font-size: 0.875rem;
+  }
+}
