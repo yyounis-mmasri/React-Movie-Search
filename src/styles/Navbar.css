@@ -1,14 +1,17 @@
-/* Navbar.css */
+@import './variables.css';
 
 .navbar {
-  background-color: #1f2937;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  background-color: var(--bg-primary);
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
 }
 
 .navbar-container {
-  max-width: 1280px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 var(--spacing-md);
 }
 
 .navbar-content {
@@ -21,33 +24,34 @@
 .navbar-brand {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--spacing-sm);
 }
 
 .navbar-icon {
-  font-size: 1.5rem;
+  font-size: var(--font-size-2xl);
 }
 
 .navbar-title {
-  color: white;
-  font-size: 1.25rem;
+  color: var(--text-primary);
+  font-size: var(--font-size-xl);
   font-weight: 600;
 }
 
 .navbar-links {
   display: none;
   align-items: center;
-  gap: 1.5rem;
+  gap: var(--spacing-lg);
 }
 
 .navbar-link {
-  color: #d1d5db;
+  color: var(--text-secondary);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color var(--transition-base);
+  font-weight: 500;
 }
 
 .navbar-link:hover {
-  color: white;
+  color: var(--primary-color);
 }
 
 .navbar-mobile-menu {
@@ -55,19 +59,16 @@
 }
 
 .navbar-mobile-button {
-  color: #d1d5db;
-  background: none;
+  color: var(--text-secondary);
+  background: transparent;
   border: none;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: var(--spacing-sm);
+  transition: color var(--transition-base);
 }
 
 .navbar-mobile-button:hover {
-  color: white;
-}
-
-.navbar-mobile-button:focus {
-  outline: none;
+  color: var(--text-primary);
 }
 
 .navbar-mobile-icon {
@@ -75,7 +76,6 @@
   width: 1.5rem;
 }
 
-/* Responsive Styles */
 @media (min-width: 768px) {
   .navbar-links {
     display: flex;
@@ -88,10 +88,10 @@
 
 @media (max-width: 360px) {
   .navbar-title {
-    font-size: 1rem;
+    font-size: var(--font-size-lg);
   }
   
   .navbar-icon {
-    font-size: 1.25rem;
+    font-size: var(--font-size-xl);
   }
 }
