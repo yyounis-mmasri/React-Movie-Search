@@ -1,84 +1,125 @@
-// src/api.js - IMDb API (بدون API Key!)
-const BASE_URL = 'https://imdb.iamidiotareyoutoo.com';
+// src/testApi.js
+// Quick manual test file - Run this to test OMDb API functions
 
-export const IMG_BASE = {
-  poster: '',
-  backdrop: '',
-  profile: ''
-};
+import { getTrending, searchMovies, getMovieDetails, getMovieByTitle } from './api';
 
-// List of popular movies
-const popularMovies = [
-  { id: 'tt2250912', title: 'Spider-Man: Homecoming' },
-  { id: 'tt6320628', title: 'Spider-Man: Far from Home' },
-  { id: 'tt10872600', title: 'Spider-Man: No Way Home' },
-  { id: 'tt0145487', title: 'Spider-Man' },
-  { id: 'tt0316654', title: 'Spider-Man 2' },
-  { id: 'tt1375666', title: 'Inception' },
-  { id: 'tt0468569', title: 'The Dark Knight' },
-  { id: 'tt0111161', title: 'The Shawshank Redemption' },
-  { id: 'tt0133093', title: 'The Matrix' },
-  { id: 'tt0816692', title: 'Interstellar' }
-];
-
-export async function getMovieById(imdbId) {
-  const response = await fetch(`${BASE_URL}/search?tt=${imdbId}`);
-  const data = await response.json();
+const testApi = async () => {
+  console.log('🧪 Starting API tests...\n');
   
-  if (!data.ok) {
-    throw new Error('Movie not found');
+  // Test 1: Get Trending Movies
+  console.log('📊 Test 1: Getting trending movies...');
+  try {
+    const trending = await getTrending(1, 'day');
+    console.log('✅ Trending movies fetched successfully!');
+    console.log(`   Found ${trending.results.length} movies`);
+    console.log(`   Total pages: ${trending.total_pages}`);
+    console.log(`   First movie: ${trending.results[0]?.title}`);
+    console.log(`   Poster URL: ${trending.results[0]?.poster_path}`);
+  } catch (error) {
+    console.error('❌ Trending movies test failed:', error.message);
   }
   
-  return {
-    id: data.imdbId,
-    title: data.short.name,
-    poster_path: data.short.image,
-    vote_average: data.short.aggregateRating?.ratingValue || 0,
-    release_date: data.short.datePublished,
-    overview: data.short.description
-  };
-}
-
-export async function getTrending(page = 1) {
-  // Get first movie as example
-  const movie = await getMovieById('tt2250912');
-  return {
-    results: [movie],
-    page: 1,
-    total_pages: 1,
-    total_results: 1
-  };
-}
-
-export async function searchMovies(query, page = 1) {
-  // Filter movies by title
-  const filtered = popularMovies.filter(m => 
-    m.title.toLowerCase().includes(query.toLowerCase())
-  );
+  console.log('\n---\n');
   
-  if (filtered.length === 0) {
-    return {
-      results: [],
-      page: 1,
-      total_pages: 0,
-      total_results: 0
-    };
+  // Test 2: Search Movies
+  console.log('🔍 Test 2: Searching for "Inception"...');
+  try {
+    const searchResults = await searchMovies('Inception', 1);
+    console.log('✅ Search completed successfully!');
+    console.log(`   Found ${searchResults.total_results} total results`);
+    console.log(`   Showing ${searchResults.results.length} on this page`);
+    if (searchResults.results.length > 0) {
+      console.log(`   First result: ${searchResults.results[0].title}`);
+      console.log(`   Release date: ${searchResults.results[0].release_date}`);
+    }
+  } catch (error) {
+    console.error('❌ Search test failed:', error.message);
   }
   
-  // Get full data for first result
-  const movie = await getMovieById(filtered[0].id);
+  console.log('\n---\n');
   
-  return {
-    results: [movie],
-    page: 1,
-    total_pages: 1,
-    total_results: filtered.length
-  };
-}
-
-export default {
-  getTrending,
-  searchMovies,
-  getMovieById,
-  IMG_BASE
+  // Test 3: Empty Search Query
+  console.log('🔍 Test 3: Testing empty search query...');
+  try {
+    const emptySearch = await searchMovies('', 1);
+    console.log('✅ Empty search handled correctly!');
+    console.log(`   Results: ${emptySearch.results.length} (should be 0)`);
+  } catch (error) {
+    console.error('❌ Empty search test failed:', error.message);
+  }
+  
+  console.log('\n---\n');
+  
+  // Test 4: Pagination
+  console.log('📄 Test 4: Testing pagination (page 2)...');
+  try {
+    const page2 = await getTrending(2);
+    console.log('✅ Pagination works!');
+    console.log(`   Page: ${page2.page}`);
+    console.log(`   Movies on page: ${page2.results.length}`);
+  } catch (error) {
+    console.error('❌ Pagination test failed:', error.message);
+  }
+  
+  console.log('\n---\n');
+  
+  // Test 5: Error Handling (invalid page)
+  console.log('⚠️ Test 5: Testing error handling with invalid page...');
+  try {
+    await getTrending(10000); // Page way out of range
+    console.log('❌ Should have thrown an error');
+  } catch (error) {
+    console.log('✅ Error handling works!');
+    console.log(`   Error message: ${error.message}`);
+  }
+  
+  console.log('\n---\n');
+  
+  // Test 6: Get Movie Details using IMDb ID
+  console.log('🎬 Test 6: Getting movie details (Guardians of the Galaxy)...');
+  try {
+    // Using the IMDb ID from your example
+    const details = await getMovieDetails('tt3896198');
+    console.log('✅ Movie details fetched!');
+    console.log(`   Title: ${details.title}`);
+    console.log(`   Year: ${details.year}`);
+    console.log(`   Director: ${details.director}`);
+    console.log(`   IMDb Rating: ${details.vote_average}/10`);
+    console.log(`   Plot: ${details.overview?.substring(0, 100)}...`);
+  } catch (error) {
+    console.error('❌ Movie details test failed:', error.message);
+  }
+  
+  console.log('\n---\n');
+  
+  // Test 7: Get Movie by Title (OMDb special feature)
+  console.log('🎬 Test 7: Getting movie by exact title...');
+  try {
+    const movie = await getMovieByTitle('The Matrix', '1999');
+    console.log('✅ Movie found by title!');
+    console.log(`   Title: ${movie.title}`);
+    console.log(`   Director: ${movie.director}`);
+    console.log(`   Actors: ${movie.actors}`);
+  } catch (error) {
+    console.error('❌ Get by title test failed:', error.message);
+  }
+  
+  console.log('\n🏁 API tests completed!');
 };
+
+// Run tests when this file is executed
+testApi();
+
+// You can also test in React component:
+/*
+import { useEffect } from 'react';
+import { getTrending, searchMovies } from './api';
+
+function TestComponent() {
+  useEffect(() => {
+    testApi();
+  }, []);
+  
+  return <div>Check console for API test results</div>;
+}
+*/
