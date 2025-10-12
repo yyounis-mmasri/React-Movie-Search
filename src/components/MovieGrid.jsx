@@ -21,4 +21,3 @@ export const MovieGrid = ({ movies = [] }) => {
   );
 };
 
-export default MovieGrid;
