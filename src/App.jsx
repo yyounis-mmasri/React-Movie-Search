@@ -1,28 +1,26 @@
-import React, { lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Layout from './components/Layout';
-import LoadingFallback from './components/LoadingFallback';
-import NotFound from './pages/NotFound';
-import './styles/variables.css';
+import React, { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Spinner from './components/Spinner';
+import './styles/global.css';
 
-// Lazy loading للصفحات
+// Lazy load Home page
 const Home = lazy(() => import('./pages/Home'));
-const Search = lazy(() => import('./pages/Search'));
-const Details = lazy(() => import('./pages/Details'));
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Layout>
-        <Suspense fallback={<LoadingFallback />}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/search" element={<Search />} />
-            <Route path="/movie/:id" element={<Details />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-      </Layout>
-    </BrowserRouter>
+    <Router>
+      <div className="app-layout">
+      
+        <main className="app-main">
+          <Suspense fallback={<Spinner label="Loading page..." />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              {/* Add more routes here */}
+            </Routes>
+          </Suspense>
+        </main>
+      </div>
+    </Router>
   );
 }

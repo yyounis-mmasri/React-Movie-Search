@@ -1,23 +1,24 @@
 import React from 'react';
-import MovieCard from './MovieCard'; 
-import '../styles/MovieGrid.css';
+import MovieCard from './MovieCard';
 
-export const MovieGrid = ({ movies = [] }) => {
-  if (!movies || movies.length === 0) {
-    return (
-      <div className="empty-state">
-        <span className="empty-icon">🎬</span>
-        <p>No movies found</p>
-      </div>
-    );
+import '../styles/MovieGrid.css';
+export default function MovieGrid({ items, emptyMessage = 'No movies found', onSelect }) {
+  if (items.length === 0) {
+    return <div className="empty-state">{emptyMessage}</div>;
   }
 
   return (
     <div className="movie-grid">
-      {movies.map((movie) => (
-        <MovieCard key={movie.id} movie={movie} />
+      {items.map((movie) => (
+        <MovieCard
+          key={movie.id}
+          id={movie.id}
+          title={movie.title}
+          year={movie.year}
+          posterUrl={movie.posterUrl}
+          onClick={onSelect}
+        />
       ))}
     </div>
   );
-};
-
+}

@@ -1,63 +1,38 @@
-@import './variables.css';
+/* ===== NotFound.css ===== */
 
-.not-found {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.notfound {
   min-height: 60vh;
-  padding: var(--spacing-xl);
-}
-
-.not-found-content {
+  display: grid;
+  place-items: center;
   text-align: center;
-  max-width: 600px;
+  padding: 24px;
+  color: #273028;
 }
 
-.not-found-title {
-  font-size: 8rem;
-  font-weight: 900;
-  color: var(--primary-color);
-  margin: 0 0 var(--spacing-md) 0;
+.notfound h1 {
+  font-size: clamp(56px, 8vw, 100px);
   line-height: 1;
+  margin: 0 0 10px;
+  color: #2f5d3b; /* لمسة خضراء متناسقة */
+  letter-spacing: 2px;
 }
 
-.not-found-subtitle {
-  font-size: var(--font-size-3xl);
-  color: var(--text-primary);
-  margin: 0 0 var(--spacing-md) 0;
-  font-weight: 700;
+.notfound p {
+  font-size: clamp(16px, 2.3vw, 18px);
+  opacity: 0.85;
+  margin: 0;
 }
 
-.not-found-text {
-  font-size: var(--font-size-lg);
-  color: var(--text-secondary);
-  margin: 0 0 var(--spacing-xl) 0;
-}
-
-.not-found-button {
+/* خيار: زر رجوع إن أضفته فيما بعد */
+.notfound .back-link {
   display: inline-block;
-  padding: var(--spacing-md) var(--spacing-xl);
-  background-color: var(--primary-color);
-  color: white;
+  margin-top: 16px;
+  padding: 8px 14px;
+  background: #2f5d3b;
+  color: #fff;
+  border-radius: 6px;
   text-decoration: none;
-  border-radius: var(--radius-md);
-  font-weight: 600;
-  font-size: var(--font-size-md);
-  transition: all var(--transition-base);
 }
-
-.not-found-button:hover {
-  background-color: #1d4ed8;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-}
-
-@media (max-width: 640px) {
-  .not-found-title {
-    font-size: 5rem;
-  }
-  
-  .not-found-subtitle {
-    font-size: var(--font-size-2xl);
-  }
+.notfound .back-link:hover {
+  filter: brightness(1.05);
 }

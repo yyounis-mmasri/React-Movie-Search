@@ -1,34 +1,54 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import '../styles/Navbar.css';
 
- const Navbar = () => {
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearch = (e) => {
+    if (e.key === 'Enter' && searchQuery.trim()) {
+      console.log('Search:', searchQuery);
+      // TODO: Navigate to search results
+    }
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <div className="navbar-content">
-          <div className="navbar-brand">
-            <span className="navbar-icon">🎬</span>
-            <span className="navbar-title">Movie Map</span>
+        <div className="navbar-brand">
+          <span className="brand-icon">🎬</span>
+          <span className="brand-text">MovieDB</span>
+        </div>
+
+        <div className="navbar-center">
+          <div className="search-box">
+            <span className="search-icon">🔍</span>
+            <input
+              type="text"
+              placeholder="Search movies..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyPress={handleSearch}
+              className="search-input"
+            />
           </div>
-          
-          <div className="navbar-links">
-            <Link to="/" className="navbar-link">Home</Link>
-            <Link to="/search" className="navbar-link">Search</Link>
-            <Link to="/login" className="navbar-link">Log in</Link>
-          </div>
-          
-          <div className="navbar-mobile-menu">
-            <button className="navbar-mobile-button" aria-label="Toggle menu">
-              <svg className="navbar-mobile-icon" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-                <path d="M4 6h16M4 12h16M4 18h16"></path>
-              </svg>
-            </button>
-          </div>
+        </div>
+
+        <div 
+          className="navbar-menu-icon" 
+          onClick={() => setIsOpen(!isOpen)}
+          style={{ cursor: 'pointer', fontSize: '24px' }}
+        >
+          {isOpen ? '✕' : '☰'}
+        </div>
+
+        <div className={`navbar-links ${isOpen ? 'active' : ''}`}>
+          <a href="#" className="nav-link">Home</a>
+          <a href="#" className="nav-link">Trending</a>
+          <a href="#" className="nav-link">Popular</a>
+          <a href="#" className="nav-link">My Favorites</a>
         </div>
       </div>
     </nav>
   );
-};
-
-export default Navbar;
+}
