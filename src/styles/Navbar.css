@@ -1,0 +1,97 @@
+@import './variables.css';
+
+.navbar {
+  background-color: var(--bg-primary);
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+}
+
+.navbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.navbar-icon {
+  font-size: var(--font-size-2xl);
+}
+
+.navbar-title {
+  color: var(--text-primary);
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+}
+
+.navbar-links {
+  display: none;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.navbar-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-base);
+  font-weight: 500;
+}
+
+.navbar-link:hover {
+  color: var(--primary-color);
+}
+
+.navbar-mobile-menu {
+  display: block;
+}
+
+.navbar-mobile-button {
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  transition: color var(--transition-base);
+}
+
+.navbar-mobile-button:hover {
+  color: var(--text-primary);
+}
+
+.navbar-mobile-icon {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .navbar-links {
+    display: flex;
+  }
+  
+  .navbar-mobile-menu {
+    display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .navbar-title {
+    font-size: var(--font-size-lg);
+  }
+  
+  .navbar-icon {
+    font-size: var(--font-size-xl);
+  }
+}
