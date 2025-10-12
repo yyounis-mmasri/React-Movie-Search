@@ -2,7 +2,7 @@
 import React from 'react';
 import '../styles/MovieCard.css';
 
-export const MovieCard = ({ movie }) => {
+ const MovieCard = ({ movie }) => {
   return (
     <div className="movie-card">
       <div className="movie-poster">

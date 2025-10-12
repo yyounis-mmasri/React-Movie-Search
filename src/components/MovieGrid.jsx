@@ -1,5 +1,5 @@
 import React from 'react';
-import MovieCard from './MovieCard'; // ← Add this import
+import MovieCard from './MovieCard'; 
 import '../styles/MovieGrid.css';
 
 export const MovieGrid = ({ movies = [] }) => {
