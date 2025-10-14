@@ -13,7 +13,7 @@
   font-size: clamp(56px, 8vw, 100px);
   line-height: 1;
   margin: 0 0 10px;
-  color: #2f5d3b; /* لمسة خضراء متناسقة */
+  color: #2f5d3b; 
   letter-spacing: 2px;
 }
 
@@ -23,7 +23,6 @@
   margin: 0;
 }
 
-/* خيار: زر رجوع إن أضفته فيما بعد */
 .notfound .back-link {
   display: inline-block;
   margin-top: 16px;

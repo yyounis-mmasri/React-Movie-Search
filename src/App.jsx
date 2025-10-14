@@ -16,7 +16,7 @@ export default function App() {
           <Suspense fallback={<Spinner label="Loading page..." />}>
             <Routes>
               <Route path="/" element={<Home />} />
-              {/* Add more routes here */}
+           
             </Routes>
           </Suspense>
         </main>
