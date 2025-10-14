@@ -1,26 +1,33 @@
-import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Spinner from './components/Spinner';
-import './styles/global.css';
+import React, { lazy, Suspense } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import LoadingFallback from './components/LoadingFallback';
+import NotFound from './pages/NotFound';
+import './styles/variables.css';
 
-// Lazy load Home page
+// Lazy loading for pages
 const Home = lazy(() => import('./pages/Home'));
+const Search = lazy(() => import('./pages/Search'));
+const Details = lazy(() => import('./pages/Details'));
+
 
 export default function App() {
   return (
-    <Router>
-      <div className="app-layout">
-      
-        <main className="app-main">
-          <Suspense fallback={<Spinner label="Loading page..." />}>
-            <Routes>
-              <Route path="/" element={<Home />} />
+    <BrowserRouter>
+    
+        <Suspense fallback={<LoadingFallback />}>
+          <Routes>
+            {/* Main Routes */}
+            <Route path="/" element={<Home />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/movie/:id" element={<Details />} />
+            
            
-            </Routes>
-          </Suspense>
-        </main>
-      </div>
-    </Router>
+  
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+     
+    </BrowserRouter>
   );
 }
