@@ -1,7 +1,8 @@
 @import './variables.css';
 
 .navbar {
-  background-color: var(--bg-primary);
+  background-color:var(--Nav-color);
+  
   box-shadow: var(--shadow-md);
   position: sticky;
   top: 0;

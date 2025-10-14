@@ -1,13 +1,12 @@
-import React from 'react';
-import '../styles/Loading.css';
-
-const LoadingFallback = () => {
+// LoadingFallback.jsx
+import React from "react";
+import Spinner from "./Spinner";
+import "../styles/Loading.css";
+export default function LoadingFallback() {
   return (
-    <div className="loading-container">
-      <div className="loading-spinner"></div>
-      <p className="loading-text">Loading...</p>
+    <div className="loading">
+      <Spinner />
+      <span>Loading…</span>
     </div>
   );
-};
-
-export default LoadingFallback;
+}
