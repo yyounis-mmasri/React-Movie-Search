@@ -1,37 +1,43 @@
-/* src/styles/App.css - Modern Green Movie App Theme */
-
-:root {
-  --primary-green: #8FA881;
-  --dark-green: #7A9268;
-  --light-green: #A3B896;
-  --white: #ffffff;
-  --dark-text: #2C3E50;
-  --gray-text: #7F8C8D;
-  --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
-  background-color: var(--primary-green);
-  min-height: 100vh;
-  margin: 0;
-}
-
-.app {
-  min-height: 100vh;
-  background-color: var(--primary-green);
-}
-
-/* Container */
-.container {
-  max-width: 1400px;
+app.css
+#root {
+  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
 }

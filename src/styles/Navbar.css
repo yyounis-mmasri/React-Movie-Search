@@ -1,166 +1,97 @@
-/* src/components/Navbar.css */
+@import './variables.css';
 
 .navbar {
-  background: #96A78D;;
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color:#B6CEB4;
+  box-shadow: var(--shadow-md);
   position: sticky;
   top: 0;
-  z-index: 1000;
-  padding: 0 20px;
+  z-index: var(--z-sticky);
 }
 
 .navbar-container {
   max-width: 1400px;
   margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.navbar-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  height: 70px;
+  height: 4rem;
 }
 
 .navbar-brand {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 1.5rem;
-  font-weight: 700;
-  background: white;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  cursor: pointer;
-  white-space: nowrap;
-  flex-shrink: 0;
+  gap: var(--spacing-sm);
 }
 
-.brand-icon {
-  font-size: 1.8rem;
+.navbar-icon {
+  font-size: var(--font-size-2xl);
 }
 
-.brand-text {
-  display: none;
+.navbar-title {
+  color: var(--text-primary);
+  font-size: var(--font-size-xl);
+  font-weight: 600;
 }
 
-@media (min-width: 768px) {
-  .brand-text {
-    display: inline;
-  }
-}
-
-/* Search Box */
-.navbar-center {
-  flex: 1;
-  max-width: 400px;
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .navbar-center {
-    display: block;
-  }
-}
-
-.search-box {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-.search-box:focus-within {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 190, 11, 0.5);
-  box-shadow: 0 0 12px rgba(255, 190, 11, 0.2);
-}
-
-.search-icon {
-  color: #888;
-  flex-shrink: 0;
-}
-
-.search-input {
-  border: none;
-  background: transparent;
-  color: #fff;
-  font-size: 0.95rem;
-  outline: none;
-  width: 100%;
-}
-
-.search-input::placeholder {
-  color: #666;
-}
-
-/* Navigation Links */
 .navbar-links {
   display: none;
-  position: absolute;
-  top: 70px;
-  right: 0;
-  left: 0;
-  background: rgba(15, 15, 15, 0.98);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 10px 0;
-  flex-direction: column;
-  gap: 0;
-}
-
-.navbar-links.active {
-  display: flex;
-}
-
-@media (min-width: 1024px) {
-  .navbar-links {
-    display: flex !important;
-    position: static;
-    background: transparent;
-    border: none;
-    padding: 0;
-    flex-direction: row;
-    gap: 30px;
-  }
-}
-
-.nav-link {
-  display: block;
-  padding: 12px 20px;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
-  border-left: 3px solid transparent;
-}
-
-@media (min-width: 1024px) {
-  .nav-link {
-    padding: 0;
-    border-left: none;
-    border-bottom: 3px solid transparent;
-  }
-}
-
-.nav-link:hover {
-  color: #ffbe0b;
-  border-color: #ffbe0b;
-}
-
-/* Menu Icon */
-.navbar-menu-icon {
-  display: flex;
   align-items: center;
-  cursor: pointer;
-  color: #fff;
-  flex-shrink: 0;
+  gap: var(--spacing-lg);
 }
 
-@media (min-width: 1024px) {
-  .navbar-menu-icon {
+.navbar-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-base);
+  font-weight: 500;
+}
+
+.navbar-link:hover {
+  color: var(--primary-color);
+}
+
+.navbar-mobile-menu {
+  display: block;
+}
+
+.navbar-mobile-button {
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  transition: color var(--transition-base);
+}
+
+.navbar-mobile-button:hover {
+  color: var(--text-primary);
+}
+
+.navbar-mobile-icon {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .navbar-links {
+    display: flex;
+  }
+  
+  .navbar-mobile-menu {
     display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .navbar-title {
+    font-size: var(--font-size-lg);
+  }
+  
+  .navbar-icon {
+    font-size: var(--font-size-xl);
   }
 }
