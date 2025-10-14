@@ -1,5 +1,12 @@
 :root {
+  
   /* Colors */
+    /* Accents used across UI */
+  --accent-yellow: #ffbe0b;      /* كان ثابت في spinner/pagination */
+  --accent-pink:   #ff006e;      /* كان ثابت في error button */
+  --bg-app-dark:   #0f0f0f;      /* كان ثابت في global.css */
+  --card-bg-dark:  #1a1a1a;      /* movie card */
+  --card-bg-darker:#2a2a2a;
   --primary-color: #2563eb;
   --secondary-color: #10b981;
   --danger-color: #ef4444;

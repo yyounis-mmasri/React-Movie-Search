@@ -1,15 +1,16 @@
 /* ===== NotFound.css ===== */
 
-.notfound {
+ .not-found {
   min-height: 60vh;
   display: grid;
-  place-items: center;
+   place-items: center; 
   text-align: center;
   padding: 24px;
   color: #273028;
+  
 }
 
-.notfound h1 {
+.not-found h1 {
   font-size: clamp(56px, 8vw, 100px);
   line-height: 1;
   margin: 0 0 10px;
@@ -17,13 +18,13 @@
   letter-spacing: 2px;
 }
 
-.notfound p {
+.not-found p {
   font-size: clamp(16px, 2.3vw, 18px);
   opacity: 0.85;
   margin: 0;
 }
 
-.notfound .back-link {
+.not-found .back-link {
   display: inline-block;
   margin-top: 16px;
   padding: 8px 14px;
@@ -32,6 +33,6 @@
   border-radius: 6px;
   text-decoration: none;
 }
-.notfound .back-link:hover {
+.not-found .back-link:hover {
   filter: brightness(1.05);
-}
+} 
