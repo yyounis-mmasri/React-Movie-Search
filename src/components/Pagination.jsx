@@ -1,19 +1,35 @@
+// src/components/Pagination.jsx
 import React from 'react';
 import '../styles/Pagination.css';
 
+function DirectionButton({ label, targetPage, disabled, onGo, aria }) {
+  const handleClick = () => {
+    if (!disabled) onGo(targetPage);
+  };
+  return (
+    <button
+      className="pagination-btn"
+      disabled={disabled}
+      onClick={handleClick}
+      aria-label={aria || label}
+    >
+      {label}
+    </button>
+  );
+}
+
 export default function Pagination({
   page,
-  currentPage,          
+  currentPage,
   totalPages = 1,
   onPageChange,
-  showFirstLast = true,  
+  showFirstLast = true,
 }) {
-
-  const toInt = (v, fallback = 1) => {
+  // normalize/clamp
+  const toInt = (v, fb = 1) => {
     const n = Number(v);
-    return Number.isFinite(n) && n > 0 ? Math.trunc(n) : fallback;
+    return Number.isFinite(n) && n > 0 ? Math.trunc(n) : fb;
   };
-
   const tp = toInt(totalPages, 1);
   const cur = Math.min(tp, Math.max(1, toInt(page ?? currentPage, 1)));
 
@@ -23,50 +39,46 @@ export default function Pagination({
   };
 
   return (
-    <div className="pagination" role="navigation" aria-label="Pagination">
+    <nav className="pagination" role="navigation" aria-label="Pagination">
       {showFirstLast && (
-        <button
-          className="pagination-btn"
-          onClick={() => go(1)}
+        <DirectionButton
+          label="« First"
+          targetPage={1}
           disabled={cur <= 1}
-          aria-label="First page"
-        >
-          « First
-        </button>
+          onGo={go}
+          aria="First page"
+        />
       )}
 
-      <button
-        className="pagination-btn"
-        onClick={() => go(cur - 1)}
+      <DirectionButton
+        label="← Previous"
+        targetPage={cur - 1}
         disabled={cur <= 1}
-        aria-label="Previous page"
-      >
-        ← Previous
-      </button>
+        onGo={go}
+        aria="Previous page"
+      />
 
       <span className="pagination-info" aria-live="polite">
         Page {cur} of {tp}
       </span>
 
-      <button
-        className="pagination-btn"
-        onClick={() => go(cur + 1)}
+      <DirectionButton
+        label="Next →"
+        targetPage={cur + 1}
         disabled={cur >= tp}
-        aria-label="Next page"
-      >
-        Next →
-      </button>
+        onGo={go}
+        aria="Next page"
+      />
 
       {showFirstLast && (
-        <button
-          className="pagination-btn"
-          onClick={() => go(tp)}
+        <DirectionButton
+          label="Last »"
+          targetPage={tp}
           disabled={cur >= tp}
-          aria-label="Last page"
-        >
-          Last »
-        </button>
+          onGo={go}
+          aria="Last page"
+        />
       )}
-    </div>
+    </nav>
   );
 }
