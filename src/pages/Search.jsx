@@ -20,7 +20,6 @@ export default function Search() {
   const { items, totalPages, loading, error } =
     useSearchMovies(query, currentPage, { debounceMs: 400 });
 
-  // helpers (قادمة من utils)
   const setSafeParams = makeSetSafeParams(setSearchParams);
 
   const handleSearch = (e) => {
