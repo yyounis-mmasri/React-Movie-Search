@@ -4,8 +4,8 @@ import Navbar from '../components/Navbar';
 import MovieGrid from '../components/MovieGrid';
 import LoadingFallback from '../components/LoadingFallback';
 import Pagination from '../components/Pagination';
-import useSearchMovies from '../hooks/useeSearchMovies';
-import useSearchHistory from '../hooks/useeSearchHistory';
+import useSearchMovies from '../hooks/useSearchMov';
+import useSearchHistory from '../hooks/useSearchHist';
 import { sanitizeQuery, clampPage, makeSetSafeParams, scrollToTopSmooth } from '../utils/searchHelpers';
 import '../styles/Search.css';
 
