@@ -1,45 +1,26 @@
-
 import { Link } from 'react-router-dom';
 import '../styles/MovieCard.css';
 
+const FALLBACK_POSTER = '/placeholder-poster.png';
+
 function MovieCard({ movie }) {
-  // Handle undefined movie
   if (!movie) return null;
 
-  // Extract fields 
-  const posterUrl = movie.posterUrl || 
-                    movie.Poster || 
-                    movie.poster_path || 
-                    '/placeholder-poster.png';
-  
-  const year = movie.year || 
-               movie.Year || 
-               movie.release_date?.split('-')[0] || 
-               'N/A';
-  
-  const rating = movie.rating || 
-                 movie.imdbRating || 
-                 movie.vote_average || 
-                 null;
-  
-  const movieId = movie.id || 
-                  movie.imdbID || 
-                  movie.imdb_id;
+  const posterUrl =
+    movie.posterUrl || movie.Poster || movie.poster_path || FALLBACK_POSTER;
 
-  const title = movie.title || 
-                movie.Title || 
-                movie.name || 
-                'Unknown Title';
+  const year =
+    movie.year || movie.Year || movie.release_date?.split('-')[0] || 'N/A';
 
-  // If no valid ID, don't render
+  const rating =
+    movie.rating ?? movie.imdbRating ?? movie.vote_average ?? null;
+
+  const movieId = movie.id || movie.imdbID || movie.imdb_id;
+  const title = movie.title || movie.Title || movie.name || 'Unknown Title';
   if (!movieId) return null;
 
   return (
-    <Link 
-      to={`/movie/${movieId}`} 
-      className="movie-card-link"
-      aria-label={`View details for ${title}`}
-    >
+    <Link to={`/movie/${movieId}`} className="movie-card-link" aria-label={`View details for ${title}`}>
       <div className="movie-card">
         <div className="movie-poster-container">
           <img
@@ -48,7 +29,9 @@ function MovieCard({ movie }) {
             className="movie-poster"
             loading="lazy"
             onError={(e) => {
-              e.target.src = '/placeholder-poster.png';
+              if (e.currentTarget.src !== FALLBACK_POSTER) {
+                e.currentTarget.src = FALLBACK_POSTER; // منع حلقة لا نهائية
+              }
             }}
           />
           <div className="movie-overlay">

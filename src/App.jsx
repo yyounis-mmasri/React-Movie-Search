@@ -4,8 +4,6 @@ import Layout from './components/Layout';
 import LoadingFallback from './components/LoadingFallback';
 import NotFound from './pages/NotFound';
 import './styles/variables.css';
-import Details from './pages/Details';
-
 // Lazy loading for pages
 const Home = lazy(() => import('./pages/Home'));
 const Search = lazy(() => import('./pages/Search'));
