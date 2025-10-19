@@ -4,6 +4,7 @@ import Layout from './components/Layout';
 import LoadingFallback from './components/LoadingFallback';
 import NotFound from './pages/NotFound';
 import './styles/variables.css';
+import Details from './pages/Details';
 
 // Lazy loading for pages
 const Home = lazy(() => import('./pages/Home'));
@@ -20,7 +21,7 @@ export default function App() {
             {/* Main Routes */}
             <Route path="/" element={<Home />} />
             <Route path="/search" element={<Search />} />
-            <Route path="/movie/:id" element={<Details />} />
+             <Route path="/movie/:id" element={<Details />} /> 
             
            
   
