@@ -1,47 +1,53 @@
-/* src/components/MovieGrid.css */
-
 .movie-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 24px;
-  padding: 20px 0;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2.5rem;
+  padding: 1rem 0;
+  margin-bottom: 3rem;
+}
+
+.movie-grid-empty {
+  text-align: center;
+  padding: 5rem 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 25px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  margin: 2rem auto;
+  max-width: 600px;
+}
+
+.movie-grid-empty p {
+  color: #666;
+  font-size: 1.3rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Responsive Grid */
+@media (max-width: 1400px) {
+  .movie-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .movie-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .movie-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1.5rem;
+  }
 }
 
 @media (max-width: 480px) {
   .movie-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1.2rem;
   }
-}
-
-@media (min-width: 481px) and (max-width: 768px) {
-  .movie-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .movie-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-}
-
-@media (min-width: 1025px) {
-  .movie-grid {
-    grid-template-columns: repeat(6, 1fr);
-    gap: 24px;
-  }
-}
-
-.empty-state {
-  text-align: center;
-  padding: 80px 20px;
-  font-size: 1.2rem;
-  color: #999;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  border: 2px dashed rgba(255, 255, 255, 0.1);
-  margin: 20px 0;
 }
