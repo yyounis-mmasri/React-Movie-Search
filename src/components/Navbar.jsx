@@ -8,7 +8,7 @@ import '../styles/Navbar.css';
       <div className="navbar-container">
         <div className="navbar-content">
           <div className="navbar-brand">
-            <span className="navbar-icon">🎬</span>
+         
             <span className="navbar-title">Movie Map</span>
           </div>
           
