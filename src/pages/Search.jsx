@@ -41,7 +41,7 @@ export default function Search() {
           <h1>Search Movies</h1>
           <form onSubmit={handleSearch} className="search-form">
             <div className="search-input-wrapper">
-              <label htmlFor="search-q" className="sr-only">Search by title</label>
+              <label htmlFor="search-q" className="sr-only"></label>
               <input
                 id="search-q"
                 type="text"

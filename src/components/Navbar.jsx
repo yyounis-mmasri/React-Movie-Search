@@ -15,7 +15,6 @@ import '../styles/Navbar.css';
           <div className="navbar-links">
             <Link to="/" className="navbar-link">Home</Link>
             <Link to="/search" className="navbar-link">Search</Link>
-            <Link to="/login" className="navbar-link">Log in</Link>
           </div>
           
           <div className="navbar-mobile-menu">

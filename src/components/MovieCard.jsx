@@ -1,55 +1,47 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { normalizeMovie, FALLBACK_POSTER } from '../utils/movieUtils';
+import PlaceholderPoster from './PlaceholderPoster';
 import '../styles/MovieCard.css';
 
 function MovieCard({ movie }) {
-  // Handle undefined movie
   if (!movie) return null;
 
-  // Extract fields (supports OMDb format)
-  const posterUrl = movie.posterUrl || 
-                    movie.Poster || 
-                    movie.poster_path || 
-                    '/placeholder-poster.png';
-  
-  const year = movie.year || 
-               movie.Year || 
-               movie.release_date?.split('-')[0] || 
-               'N/A';
-  
-  const rating = movie.rating || 
-                 movie.imdbRating || 
-                 movie.vote_average || 
-                 null;
-  
-  const movieId = movie.id || 
-                  movie.imdbID || 
-                  movie.imdb_id;
+  const { id, title, year, posterUrl, rating } = normalizeMovie(movie);
 
-  const title = movie.title || 
-                movie.Title || 
-                movie.name || 
-                'Unknown Title';
+  // Track if image failed to load
+  const [imageError, setImageError] = useState(false);
 
-  // If no valid ID, don't render
-  if (!movieId) return null;
+  // Valid poster?
+  const hasPoster =
+    posterUrl &&
+    posterUrl !== FALLBACK_POSTER &&
+    posterUrl !== 'N/A' &&
+    !imageError;
+
+  if (!id) return null;
 
   return (
-    <Link 
-      to={`/movie/${movieId}`} 
+    <Link
+      to={`/movie/${id}`}
       className="movie-card-link"
       aria-label={`View details for ${title}`}
     >
       <div className="movie-card">
-        <div className="movie-poster-container">
-          <img
-            src={posterUrl}
-            alt={`${title} poster`}
-            className="movie-poster"
-            loading="lazy"
-            onError={(e) => {
-              e.target.src = '/placeholder-poster.png';
-            }}
-          />
+        {/* Poster area */}
+        <div className="movie-poster-container" aria-hidden="true">
+          {hasPoster ? (
+            <img
+              src={posterUrl}
+              alt={`${title} poster`}
+              className="movie-poster"
+              loading="lazy"
+              onError={() => setImageError(true)}
+            />
+          ) : (
+            <PlaceholderPoster title={title} year={year} />
+          )}
+
           <div className="movie-overlay">
             {rating && (
               <div className="movie-rating">
@@ -58,6 +50,8 @@ function MovieCard({ movie }) {
             )}
           </div>
         </div>
+
+        {/* Text area */}
         <div className="movie-info">
           <h3 className="movie-title">{title}</h3>
           <p className="movie-year">{year}</p>
