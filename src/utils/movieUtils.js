@@ -1,6 +1,4 @@
 export const FALLBACK_POSTER = '/placeholder-poster.png';
-
-
 export function normalizeMovie(movie = {}) {
   const id =
     movie.id ??
